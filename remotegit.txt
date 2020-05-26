@@ -13,3 +13,55 @@ git remote add origin git@github.com:yangsen1991/LocalStore.git//后面的地址
 git push -u origin master
 //6 然后就是本地做了提交之后使用
 git push -u origin master就会同步到远端了
+//7 从远程克隆库
+cd 到一个目录
+使用git clone git@github.com:yangsen1991/LocalStore.git来进行克隆
+//8 创建与合并分支
+--创建并切换分支
+git checkout -b dev //创建并切换dev分支相当于以下两个命令
+git branch dev //创建分支dev
+git checkout dev //切换到分支dev
+--查看当前分支
+git branch
+--合并分支
+先切换到master
+然后执行git merge dev来合并dev分支内容到当前分支(master)上
+--删除分支
+git branch -d dev//删除dev分支
+--解决冲突(合并不同分支时的冲突)
+Git用<<<<<<<，=======，>>>>>>>标记出不同分支的内容，
+其中<<<HEAD是指主分支修改的内容，>>>>>fenzhi1 
+是指fenzhi1上修改的内容
+解决办法: 修改分支或者主支内容重新提交后再合并
+
+使用方法:
+
+干活时: 一般都不允许直接再主枝上干活,主枝用来发布稳定的新版本,
+一般都是开一个分支,干完后测试稳定需要发布时合并到主枝进行发布
+
+bug分支: 在修复bug时我们通常对每个bug使用临时分支来进行修复,修复完毕后合并到主枝在将临时分支关闭
+
+在干活时遇上突发情况需要紧急处理那么我们可以使用
+//1 使用
+git stash 保存当前工作现场
+//2 创建分支处理紧急情况
+//3 处理完毕后删除分支, 回到之前保存工作现场的分支
+//4 使用git stash list 查看工作现场列表
+//5 使用git stash apply恢复
+//6 恢复之后使用git stash drop进行删除 或者直接使用git stash pop恢复并删除stash内容
+
+多人协作
+查看远程库信息
+git remote
+git remote -v//详细信息
+
+//1 推送分支 git就会把该分支推送到对应的远程分支上
+git push origin master //origin是远程库默认名称 --推送当前分支到远程库master分支上
+//2 git checkout -b dev origin/dev //将远程库dev分支拉到本地来,
+开发完毕后使用git push origin dev 推送到远端的dev分支上
+
+多人协作时
+1 使用git push origin 分支名 推送自己的修改
+2 修改不成功,使用git pull试图合并
+3 合并失败需要解决冲突在本地提交后再使用git push origin 分支名推送
+

@@ -8,3 +8,5 @@ ssh-keygen -t rsa –C "413219507@qq.com"
 //2 登录github找到SSH Key输入公钥内容
 //3 github 点击New repository创建新仓库
 //4 同步本地到远程仓库
+git remote add origin git@github.com:yangsen1991/LocalStore.git//后面的地址根据每个仓库的地址不同而不同
+
